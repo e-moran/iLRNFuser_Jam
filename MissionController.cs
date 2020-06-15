@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class MissionController : MonoBehaviour
 {
-    private Events _events;
+    private GameController _gameController;
     private PlanetSpecification _currPlanetSpecification;
     private TextMeshPro _text;
     
     void Start()
     {
-        _events = GameObject.Find("GameManager").GetComponent<Events>();
-        _events.OnNewRound += OnNewRound;
+        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        _gameController.OnNewRound += OnNewRound;
         _text = gameObject.transform.Find("MissionText").GetComponent<TextMeshPro>();
     }
 

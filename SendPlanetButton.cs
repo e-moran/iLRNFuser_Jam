@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SendPlanetButton : MonoBehaviour
 {
-    private Events _events;
+    private GameController _gameController;
     private Sprite[] _stateSprites;
     private Action RedrawButton;
     private SpriteRenderer _spriteRenderer;
@@ -19,7 +19,7 @@ public class SendPlanetButton : MonoBehaviour
     void Start()
     {
         RedrawButton += DrawButton;
-        _events = GameObject.Find("GameManager").GetComponent<Events>();
+        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         
         // Initialise all the states for the button to be in
@@ -39,7 +39,7 @@ public class SendPlanetButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        _events.InvokeNewRound(new PlanetSpecification());
+        _gameController.InvokeNewRound(new PlanetSpecification());
         StartCoroutine(DoAndResetButtonClick());
     }
 

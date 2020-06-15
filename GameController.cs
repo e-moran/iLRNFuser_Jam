@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Events: MonoBehaviour
+public class GameController: MonoBehaviour
 {
     public event Action<PlanetSpecification> OnNewRound; // An event to be used to restart the round
 

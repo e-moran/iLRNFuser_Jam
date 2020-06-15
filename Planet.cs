@@ -4,16 +4,16 @@ using Random = UnityEngine.Random;
 public class Planet : MonoBehaviour
 {
     private Sprite[] _planetSprites;
-    private Events _events;
+    private GameController _gameController;
     private SpriteRenderer _spriteRenderer;
     
     void Start()
     {
         _planetSprites = Resources.LoadAll<Sprite>("Images/Planets");
-        _events = GameObject.Find("GameManager").GetComponent<Events>();
-        _events.OnNewRound += OnNewRound;
+        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        _gameController.OnNewRound += OnNewRound;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _events.InvokeNewRound(new PlanetSpecification());
+        _gameController.InvokeNewRound(new PlanetSpecification());
     }
 
     void OnNewRound(PlanetSpecification planetSpecification)
