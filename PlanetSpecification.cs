@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PlanetSpecification
@@ -20,6 +21,7 @@ public class PlanetSpecification
     private const int _numberOfOptions = 3; // Stores the number of options for each value with 0 = left-most option
     private const int _numberOfTextOptions = 2; // The number of options available for each string type
     private int[] _values;
+    private string _stringRepresentation;
 
     private string[,,] _promptText =
     {
@@ -86,12 +88,19 @@ public class PlanetSpecification
 
     public override string ToString()
     {
+        if (_stringRepresentation != null) // If a string representation was already generated, return that
+        {
+            return _stringRepresentation;
+        }
+        
         StringBuilder sb = new StringBuilder("Hey I'm looking for a planet with: ");
         for (int i = 0; i < _numberOfValues; i++)
         {
             sb.Append(_promptText[i, _values[i], Random.Range(0, _numberOfTextOptions)]).Append(", ");
         }
+        
+        _stringRepresentation = sb.ToString(0, sb.Length - 2); // Using a substring to ensure to remove the trailing ", "
 
-        return sb.ToString(0, 2); // Using a substring to ensure to remove the trailing ", "
+        return _stringRepresentation;
     }
 }
