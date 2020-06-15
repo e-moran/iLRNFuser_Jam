@@ -10,14 +10,14 @@ public class Selector : MonoBehaviour
     void Start()
     {
         _group = transform.parent.GetComponent<SelectorGroup>(); // Get the parent which must contain a selector group
-        _group.OnNewSelection += OnNewSelection;
+        _group.NewSelection += RefreshSelection;
         _renderer = GetComponent<SpriteRenderer>();
-        _renderer.enabled = false;
+        RefreshSelection();
     }
 
-    void OnNewSelection(int id)
+    void RefreshSelection()
     {
-        _renderer.enabled = id == selectorId; // Selector shadow will be visible if this is the correct selector
+        _renderer.enabled = _group.Selected == selectorId; // Selector shadow will be visible if this is the correct selector
     }
 
     void OnMouseDown()

@@ -13,7 +13,7 @@ public class Planet : MonoBehaviour
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         _gameController.OnNewRound += OnNewRound;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _gameController.InvokeNewRound(new PlanetSpecification());
+        _gameController.NewRound();
     }
 
     void OnNewRound(PlanetSpecification planetSpecification)

@@ -39,7 +39,7 @@ public class SendPlanetButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        _gameController.InvokeNewRound(new PlanetSpecification());
+        _gameController.EndRound();
         StartCoroutine(DoAndResetButtonClick());
     }
 
