@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class Events: MonoBehaviour
 {
+    public event Action<PlanetSpecification> OnNewRound; // An event to be used to restart the round
 
-    public event Action OnNewRound;
-
-    public void InvokeNewRound()
+    public void InvokeNewRound(PlanetSpecification planetSpecification)
     {
-        OnNewRound?.Invoke();
+        OnNewRound?.Invoke(planetSpecification);
     }
-    
-    
 }

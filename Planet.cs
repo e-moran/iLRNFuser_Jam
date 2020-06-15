@@ -13,10 +13,10 @@ public class Planet : MonoBehaviour
         _events = GameObject.Find("GameManager").GetComponent<Events>();
         _events.OnNewRound += OnNewRound;
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _events.InvokeNewRound();
+        _events.InvokeNewRound(new PlanetSpecification());
     }
 
-    void OnNewRound()
+    void OnNewRound(PlanetSpecification planetSpecification)
     {
         _spriteRenderer.sprite = _planetSprites[Random.Range(0, _planetSprites.Length)];
         transform.eulerAngles = new Vector3(0, 0, Random.Range(-30.0f, 30.0f));

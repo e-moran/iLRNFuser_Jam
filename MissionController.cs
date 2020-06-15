@@ -14,9 +14,9 @@ public class MissionController : MonoBehaviour
         _text = gameObject.transform.Find("MissionText").GetComponent<TextMeshPro>();
     }
 
-    void OnNewRound()
+    void OnNewRound(PlanetSpecification planetSpecification)
     {
-        _currPlanetSpecification = new PlanetSpecification();
+        _currPlanetSpecification = planetSpecification;
         _text.text = _currPlanetSpecification.ToString();
     }
 }
