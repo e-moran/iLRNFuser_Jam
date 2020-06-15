@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PlanetSpecification
@@ -17,9 +16,9 @@ public class PlanetSpecification
      * values all they'll all be written to and read at roughly the same time as each other so storing them in the same
      * data block will reduce the chance of a cache miss.
      */
-    private const int _numberOfValues = 3;
-    private const int _numberOfOptions = 3; // Stores the number of options for each value with 0 = left-most option
-    private const int _numberOfTextOptions = 2; // The number of options available for each string type
+    private const int NumberOfValues = 3;
+    private const int NumberOfOptions = 3; // Stores the number of options for each value with 0 = left-most option
+    private const int NumberOfTextOptions = 2; // The number of options available for each string type
     private int[] _values;
     private string _stringRepresentation;
 
@@ -71,12 +70,12 @@ public class PlanetSpecification
 
     public PlanetSpecification()
     {
-        _values = new int[_numberOfOptions];
+        _values = new int[NumberOfOptions];
 
         // We'll just use a for loop to set the default values since they all range from 0-2
-        for (int i = 0; i < _numberOfValues; i++)
+        for (int i = 0; i < NumberOfValues; i++)
         {
-            _values[i] = Random.Range(0, _numberOfOptions);
+            _values[i] = Random.Range(0, NumberOfOptions);
         }
     }
 
@@ -94,9 +93,9 @@ public class PlanetSpecification
         }
         
         StringBuilder sb = new StringBuilder("Hey I'm looking for a planet with: ");
-        for (int i = 0; i < _numberOfValues; i++)
+        for (int i = 0; i < NumberOfValues; i++)
         {
-            sb.Append(_promptText[i, _values[i], Random.Range(0, _numberOfTextOptions)]).Append(", ");
+            sb.Append(_promptText[i, _values[i], Random.Range(0, NumberOfTextOptions)]).Append(", ");
         }
         
         _stringRepresentation = sb.ToString(0, sb.Length - 2); // Using a substring to ensure to remove the trailing ", "
