@@ -6,7 +6,7 @@ public class PlanetSize : MonoBehaviour
     public float lerpTimer = 0.2f;
 
     private readonly float[] _scaleMapping = {
-        0.4f, 0.5f, 0.6f // Our scales for the different options of planet sizes
+        0.8f, 1f, 1.2f // Our scales for the different options of planet sizes
     };
 
     public SelectorGroup selectorGroup;
@@ -33,7 +33,7 @@ public class PlanetSize : MonoBehaviour
             elapsedTime += Time.deltaTime;
             transform.localScale = Vector3.Lerp(
                 startScale, 
-                new Vector3(1, 1, 0) * _scaleMapping[selectorGroup.Selected], 
+                new Vector3(1, 1, 1) * _scaleMapping[selectorGroup.Selected], 
                 (elapsedTime / lerpTimer));
         }
     }
