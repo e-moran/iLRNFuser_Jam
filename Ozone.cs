@@ -12,9 +12,9 @@ public class Ozone : MonoBehaviour
         // We need to load all the ozone images from the resources folder and assign them to indices corresponding
         // To the 0-2 left-right numbering scheme used in the selector group
         _ozoneSprites = new [] {
-            Resources.Load<Sprite>("Images/Planets/Ozone/Low"),
-            Resources.Load<Sprite>("Images/Planets/Ozone/Medium"),
-            Resources.Load<Sprite>("Images/Planets/Ozone/High")
+            Resources.Load<Sprite>("Images/Ozone/Low"),
+            Resources.Load<Sprite>("Images/Ozone/Medium"),
+            Resources.Load<Sprite>("Images/Ozone/High")
         };
     }
     
