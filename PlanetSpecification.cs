@@ -20,7 +20,7 @@ public class PlanetSpecification
     private const int NumberOfValues = 3;
     private const int NumberOfOptions = 3; // Stores the number of options for each value with 0 = left-most option
     private const int NumberOfTextOptions = 5; // The number of options available for each string type
-    private const int NumberOfIntroductions = 14;
+    private const int NumberOfIntroductions = 13;
     private int[] _values;
     private string _stringRepresentation;
 
@@ -39,7 +39,6 @@ public class PlanetSpecification
         "Do I get a discount if my planet’s destruction WASN’T global warming?",
         "Hey, I need to fake a planet landing, can you help me out?",
         "Yo, I’m getting an interplanetary snooker goin’ and I need a few more planets. You in?"
-
     };
 
     private string[,,] _promptText =
@@ -147,7 +146,6 @@ public class PlanetSpecification
         }
         
         _stringRepresentation = sb.ToString(0, sb.Length); // Using a substring to ensure to remove the trailing ", "
-        Debug.Log(_stringRepresentation);
         return _stringRepresentation;
     }
 }

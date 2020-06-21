@@ -7,25 +7,56 @@ public class GameController: MonoBehaviour
     public event Action<PlanetSpecification> OnNewRound; // An event to be used to restart the round
     public event Action<int> ScoreChanged;
     public event Action<int> TimeRemainingChanged;
+    public event Action OnNewGame;
     public SelectorGroup[] selectors;
     public int time = 60; // Time for one round in seconds
+    public GameObject menu;
+    public UiMenuScore uiPreviousScore;
+    public UiMenuScore uiHighScore;
 
     public bool GameActive => _timeRemaining > 0;
     public int RemainingTime => _timeRemaining;
+    public int PreviousRoundScore { get; private set; }
+    public int HighScore { get; private set; }
 
-    private int _score = 0; // TODO implement scoring
+    private int _score = 0;
     private PlanetSpecification _currPlanetSpecification;
     private int _timeRemaining;
 
-    private void Awake()
+    void Awake()
     {
-        _timeRemaining = time; // Calling this in awake so it's set before the UI draws the initial time
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        Debug.Log(HighScore);
     }
 
-    void Start()
+    public void NewGame()
     {
-        StartCoroutine(GameTimer()); // Calling this when the scene loads
+        if (GameActive)
+        {
+            Debug.Log("Game already running.");
+            return;
+        }
+        
+        _timeRemaining = time;
+        
+        menu.SetActive(false);
         NewRound();
+        StartCoroutine(GameTimer());
+        OnNewGame?.Invoke();
+    }
+
+    private void EndGame()
+    {
+        if (_score > HighScore)
+        {
+            HighScore = _score;
+            PlayerPrefs.SetInt("HighScore", HighScore);
+            uiHighScore.UpdateScore(HighScore);
+        }
+
+        PreviousRoundScore = _score;
+        uiPreviousScore.UpdateScore(PreviousRoundScore);
+        menu.SetActive(true);
     }
 
     public void NewRound()
@@ -67,5 +98,7 @@ public class GameController: MonoBehaviour
             _timeRemaining--;
             TimeRemainingChanged?.Invoke(_timeRemaining);
         }
+        
+        EndGame();
     }
 }

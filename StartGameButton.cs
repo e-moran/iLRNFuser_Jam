@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class SendPlanetButton : MonoBehaviour
+public class StartGameButton : MonoBehaviour
 {
     private GameController _gameController;
 
@@ -11,6 +13,6 @@ public class SendPlanetButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        _gameController.EndRound();
+        _gameController.NewGame();
     }
 }
