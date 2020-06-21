@@ -25,6 +25,7 @@ public class GameController: MonoBehaviour
     void Start()
     {
         StartCoroutine(GameTimer()); // Calling this when the scene loads
+        NewRound();
     }
 
     public void NewRound()
