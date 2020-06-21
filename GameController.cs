@@ -22,9 +22,11 @@ public class GameController: MonoBehaviour
     private int _score = 0;
     private PlanetSpecification _currPlanetSpecification;
     private int _timeRemaining;
+    private AudioSource _audioSource;
 
     void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         Debug.Log(HighScore);
     }
@@ -43,6 +45,7 @@ public class GameController: MonoBehaviour
         NewRound();
         StartCoroutine(GameTimer());
         OnNewGame?.Invoke();
+        _audioSource.Play();
     }
 
     private void EndGame()
@@ -57,6 +60,7 @@ public class GameController: MonoBehaviour
         PreviousRoundScore = _score;
         uiPreviousScore.UpdateScore(PreviousRoundScore);
         menu.SetActive(true);
+        _audioSource.Stop();
     }
 
     public void NewRound()
@@ -67,14 +71,8 @@ public class GameController: MonoBehaviour
 
     public void EndRound()
     {
-        bool wonRound = _currPlanetSpecification.ValidateEntry(GetValuesFromSelectors());
-        
-        if (wonRound)
-        {
-            _score++;
-            ScoreChanged?.Invoke(_score);
-        }
-        
+        _score += _currPlanetSpecification.ScoreForEntry(GetValuesFromSelectors());
+        ScoreChanged?.Invoke(_score);
         NewRound();
     }
 

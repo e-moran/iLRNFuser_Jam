@@ -127,9 +127,20 @@ public class PlanetSpecification
     }
 
     // Checks an array submitted by the game to see if the player has successfully completed the round
-    public Boolean ValidateEntry(int[] enteredValues)
+    public int ScoreForEntry(int[] enteredValues)
     {
-        return enteredValues.SequenceEqual(_values); // This method checks equality of the two arrays
+        var mapping = new [] {-1, 0, 0, 1};
+        int numMatching = 0;
+        
+        for (int i = 0; i < NumberOfValues; i++)
+        {
+            if (enteredValues[i] == _values[i])
+            {
+                numMatching++;
+            }
+        }
+
+        return mapping[numMatching];
     }
 
     public override string ToString()
